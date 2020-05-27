@@ -1,0 +1,138 @@
+/* .container{
+	position: relative;
+	background: #FDFDFD;
+	display: flex;
+	color: #fff;
+	height: 100vh;
+}
+
+.mainContent{
+	flex: 1 1 0;
+	padding: 5vh;
+	box-sizing: border-box;
+	color: #000;
+}
+
+.altContainer{
+	display: flex;
+    flex-flow: column;
+	flex: 1 1 0;
+	background: #624abf;
+	border-top-left-radius: 25px;
+	border-bottom-left-radius: 25px;
+	color: rgba(255,255,255,.57);
+	padding: 5vh;
+	padding-bottom: 0;
+	box-sizing: border-box;
+}
+
+.altHeader{
+	width: 100%;
+	text-align: right;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.altHeader p{
+	margin: 0 1rem;
+	color: rgba(255,255,255,.87);
+	font-weight: 500;
+}
+
+.altHeader .coins{
+	color: #fdd712;	
+}
+
+.altContent{
+	display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.altContent::-webkit-scrollbar {
+  display: none;
+}
+
+
+.hide{
+	display: none;
+} */
+
+
+
+.container{
+	width: 100vw;
+	height: calc(100vh - 28px); /*28px = title bar*/
+	background: #121212;
+	color: #fff;
+	overflow: hidden;
+}
+
+.header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100px;
+	padding: 0 40px;
+}
+
+.header .logo{
+	width: 150px;
+	height: 60px;
+	background: #fff;
+	opacity: .30;
+}
+
+.header .right .icon{
+	font-size: 30px;
+	margin-right: 20px;
+	
+}
+
+.right .joinButton{
+	margin-right: 40px;
+}
+
+.header .right .user {
+	display: inline-flex;
+    vertical-align: middle;
+    justify-content: center;
+	align-items: center;
+	margin-left: 20px;
+}
+
+.right .user h2{
+	font-size: 20px;
+	margin-left: 15px;
+}
+
+.right .user .avatar{
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	background: rgba(255, 255, 255, .45);
+	overflow: hidden;
+}
+
+.right .user .avatar img{
+	width: 50px;
+	height: 50px;
+}
+
+.mainContent{
+	position: relative;
+	height: calc(100% - 100px);
+	background: #232323  url('../../images/bg2.svg');
+	overflow: hidden;
+	background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.footer{
+	display: none;
+	height: 100px;
+}

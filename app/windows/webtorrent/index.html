@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Jukee Hidden-Window</title>
+  </head>
+  <body>
+    <div id="root">
+        You should't be seeing this :(
+    </div>
+
+    <script>
+      {
+        const scripts = [];
+
+        // Dynamically insert the DLL script in development env in the
+        // renderer process
+        if (process.env.NODE_ENV === 'development') {
+          scripts.push('./index.js');
+        }
+        
+        else{
+          scripts.push('../../dist/webTorrent.prod.js');
+        }
+
+        document.write(
+          scripts
+            .map(script => `<script defer src="${script}"><\/script>`)
+            .join('')
+        );
+      }
+    </script>
+  </body>
+</html>

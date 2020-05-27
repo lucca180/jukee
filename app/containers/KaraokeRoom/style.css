@@ -1,0 +1,122 @@
+.karaokeContainer {
+  position: relative;
+  background: #000;
+  width: 100vw;
+  height: calc(100vh - 28px); /* 28px = title bar*/
+}
+
+.karaokeContainer audio {
+  display: none;
+}
+
+.karaokeContainer video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.fade {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #121212;
+  transition: opacity 1.5s;
+  opacity: 1;
+}
+
+.media {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /* top: 10%; */
+
+  /* bottom: 0; */
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(10px) brightness(0.7);
+}
+
+.content {
+  position: relative;
+  color: #f1f1f1;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 3rem;
+  padding: 2% 2.5%;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.headerBar{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 120px;
+}
+
+.content .bars {
+  height: calc(100% - 245px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botbar {
+  height: 125px;
+  width: 100%;
+  background: rgba(18, 18, 18, 0.87);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 1.5s;
+}
+
+.botbar .userScore {
+  font-size: 2rem;
+  padding: 0 2rem;
+  flex: 1;
+  display: flex;
+}
+
+.botbar .lyrics {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 100%;
+}
+
+.botbar .currentLyric {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.botbar .nextLyric {
+  font-size: 1.5rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+
+.multiScores{
+  flex: 1;
+  display: flex;
+  padding: 0 2rem;
+  justify-content: space-evenly;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+}

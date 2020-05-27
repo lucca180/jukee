@@ -1,0 +1,77 @@
+.cardBase{
+  /* margin: 10px 0; */
+  border-radius: 15px;
+}
+
+.card{
+  display: flex;
+  flex-flow: column;
+  width: 13vw;
+  max-width: 175px;
+  max-height: 225px;
+  padding: 5px;
+  border-radius: 15px;
+  background: #1e1e1e;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Roboto';
+  transition: background .5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.card:hover{
+  background: #252525;
+}
+
+.card .cover{
+  width: 100%;;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.card img{
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  filter: brightness(0.75);
+}
+
+.musicInfo{
+  display: flex;
+  flex-flow: column;
+  /* flex: 1; */
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.musicInfo p{
+  width: 100%;
+  margin: 0;
+  white-space: nowrap;                  
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.musicInfo .title{
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.musicInfo .artist{
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 1450px){
+  
+  /* .right{
+    justify-content: space-evenly;
+  }
+
+  .right > *{
+    margin: 20px 5px;
+  } */
+}

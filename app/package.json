@@ -1,0 +1,16 @@
+{
+  "name": "jukee-karaoke",
+  "productName": "Jukee",
+  "version": "0.1.5",
+  "description": "Karaoke Application based on Electron React",
+  "author": "Jukee",
+  "main": "./main.prod.js",
+  "scripts": {
+    "electron-rebuild": "node -r ../internals/scripts/BabelRegister.js ../internals/scripts/ElectronRebuild.js",
+    "postinstall": "yarn electron-rebuild"
+  },
+  "dependencies": {
+    "rimraf": "^3.0.2",
+    "webtorrent": "^0.108.1"
+  }
+}
