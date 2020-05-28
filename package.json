@@ -104,7 +104,7 @@
     "publish": {
       "provider": "github",
       "owner": "lucca180",
-      "repo": "jukee-karaoke",
+      "repo": "jukee",
       "private": false
     }
   },
