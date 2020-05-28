@@ -123,9 +123,15 @@ export default class DownloadMenu extends Component {
                 clearInterval(this.progressLoop);
                 this.progressLoop = setInterval(this.getProgress, 1000);
             }
+
+            return true;
         }
 
-        return true;
+        if(!Boolean(this.props.anchorEl) && !Boolean(nextProps.anchorEl)) return false;
+
+        if(this.state.downloadList !== nextState.downloadList) return true;
+
+        return false;
     }
 
     componentDidMount(){
