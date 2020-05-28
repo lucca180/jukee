@@ -9,7 +9,7 @@ Jukee is an **Ultrastar-based karaoke player** made with **Electron** and **Reac
  - Download your favorite songs via Torrent
  - Pitch detection for marking your score
  - Modern UI
- - **Online Mode!** ~soon™~
+ - **Online Mode!** <sup>soon™</sup>
 
 
 ### Getting Started
