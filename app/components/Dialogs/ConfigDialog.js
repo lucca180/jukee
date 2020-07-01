@@ -45,18 +45,33 @@ export default class ConfigDialog extends PureComponent {
         if(!path) return;
 
         this.setState({
-            downloadPath: path[0] + '/Jukee/'
+            downloadPath: path[0]
         })
     }
 
+
+    saveConfig = () => {
+        userConfigs.set("downloadPath", this.state.downloadPath);
+        this.props.toggle();
+    }
+
+    reset = () => {
+        this.setState({
+            downloadPath: userConfigs.get('downloadPath'),
+        })
+
+    }
+
 	render() {
-        const {open, handleClose} = this.props;
+        const {open} = this.props;
         const {downloadPath} = this.state;
 
 	    return (
 	    	<Dialog
                 fullWidth
-		        open={open}
+                open={open}
+                onClose={this.props.toggle}
+                onExited={this.reset}
 		        TransitionComponent={Transition}
 		    >
 		    	<DialogTitle>Configurações</DialogTitle>
@@ -79,10 +94,10 @@ export default class ConfigDialog extends PureComponent {
                 </DialogContent>
 
                 <DialogActions>
-                    <Button onClick={() => handleClose(true)} color="primary">
+                    <Button onClick={this.props.toggle} color="primary">
                         Fechar
                     </Button>
-                    <Button onClick={() => handleClose(true)} color="primary">
+                    <Button onClick={this.saveConfig} color="primary">
                         Salvar
                     </Button>
                 </DialogActions>

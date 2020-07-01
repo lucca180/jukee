@@ -26,6 +26,7 @@ export default class Layout extends PureComponent {
 		this.state = {
             anchorEl: null,
             dropOverlay: false,
+            configOpen: false,
         }
         
         this.downloadIcon = React.createRef();
@@ -57,6 +58,12 @@ export default class Layout extends PureComponent {
             })
     }
 
+    toggleConfig = () => {
+        this.setState({
+            configOpen: !this.state.configOpen
+        })
+    }
+
     handleDrop = async (files) => {
         this.setState({
             dropOverlay: false,
@@ -72,7 +79,7 @@ export default class Layout extends PureComponent {
     }
 
 	render() {
-        const {anchorEl, dropOverlay} = this.state;
+        const {anchorEl, dropOverlay, configOpen} = this.state;
         return (
             <Dropzone 
                 noClick 
@@ -88,7 +95,9 @@ export default class Layout extends PureComponent {
 	     	<div  {...getRootProps()} className={styles.container}>
 
                 {dropOverlay && <div className={styles.dropOverlay}><i className="fas fa-download"></i></div>}
-                <ConfigDialog/>
+                
+                <ConfigDialog open={configOpen} toggle={this.toggleConfig}/>
+
                 <input {...getInputProps()} />
                 <div className={styles.header}>
                     <div className={styles.logo}></div>
@@ -101,7 +110,7 @@ export default class Layout extends PureComponent {
 
                         <DownloadMenu anchorEl={anchorEl} handleClose={this.handleClose}/>
 
-                        <IconButton className={styles.icon}>
+                        <IconButton onClick={this.toggleConfig} className={styles.icon}>
                             <i className="fas fa-cog "></i>
                         </IconButton>
                     </div>
