@@ -13,9 +13,19 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import path from 'path';
 import MenuBuilder from './menu';
+import ElectronStore from 'electron-store';
 
-import {launchWebTorrent} from './windows/webtorrent/webtorrent';
+import { launchWebTorrent } from './windows/webtorrent/webtorrent';
+import { configDefaults } from './constants/consts';
+
+const appName = 'Jukee';
+app.name = appName;
+const appData = app.getPath('appData');
+app.setPath('userData', path.join(appData, appName));
+
+new ElectronStore({defaults: configDefaults})
 
 export default class AppUpdater {
   constructor() {

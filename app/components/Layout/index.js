@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
 import { ipcRenderer } from 'electron';
 
+import Dropzone from 'react-dropzone'
+
 import IconButton from '@material-ui/core/IconButton';
 
-import Dropzone from 'react-dropzone'
 import DownloadMenu from '../DownloadMenu';
+import ConfigDialog from '../Dialogs/ConfigDialog';
 
 import styles from './style.css';
 
@@ -86,7 +88,7 @@ export default class Layout extends PureComponent {
 	     	<div  {...getRootProps()} className={styles.container}>
 
                 {dropOverlay && <div className={styles.dropOverlay}><i className="fas fa-download"></i></div>}
-
+                <ConfigDialog/>
                 <input {...getInputProps()} />
                 <div className={styles.header}>
                     <div className={styles.logo}></div>

@@ -13,7 +13,7 @@ const app = electron.remote.app;
 const ipc = electron.ipcRenderer
 
 const defaultAnnounce = require('../../constants/defaultAnnounceList.json');
-const downloadPath = app.getPath('downloads') + '/karaoke/';
+
 var CLIENT = new WebTorrent();
 var latestProgress = {};
 console.log(CLIENT);
@@ -27,7 +27,7 @@ function init(){
 
 	CLIENT.on('error', (e) => console.error(e, 'destroyed: ', CLIENT.destroyed));
 	
-	sendUserIP();
+	//sendUserIP();
 
 	loadDownloadStack();
 	setInterval(updateTorrentProgress, 1000);
@@ -37,6 +37,7 @@ function init(){
 
 function startDownload(torrentInfo, peerIP){
 	try{
+		const downloadPath = userConfigs.get('downloadPath');
 		CLIENT.add(torrentInfo, {announce: defaultAnnounce, path: downloadPath, private: false, maxWebConns: 7},(torrent) => {
 			console.log('Client is downloading:', torrent.infoHash);
 
@@ -111,12 +112,10 @@ function saveTorrent(torrent, done){
 		var songInfo = {
 			id: torrent.infoHash,
 			name: torrent.name,
-			path: torrent.path,
-			capa: capa.path,
+			cover: capa.name,
 			done: done,
 		}
 
-		songInfo.capa = path.join(app.getPath('downloads'), 'karaoke', songInfo.capa);
 
 		fs.writeFileSync(path.join(torrentPath, 'info.json'), JSON.stringify(songInfo));
 		fs.writeFileSync(path.join(torrentPath, torrent.name+'.torrent'), torrent.torrentFile);
@@ -130,6 +129,8 @@ function saveTorrent(torrent, done){
 }
 
 function removeTorrent(torrentId, torrentPath, deleteFiles){
+		const downloadPath = userConfigs.get('downloadPath');
+		
 		try{
 				CLIENT.remove(torrentId);
 		}catch(e){

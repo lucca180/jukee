@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import path from 'path';
 
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -11,7 +12,7 @@ export class MusicCard extends PureComponent {
 	    return (
             <ButtonBase component="div" onClick={()=> select(data.id)} className={styles.cardBase}>
                 <Paper className={styles.card} elevation={3}>
-                    <div className={styles.cover}><img src={data.capa}/></div>
+                    <div className={styles.cover}><img src={path.join(data.path, data.cover)}/></div>
                     <div className={styles.musicInfo}>
                         <p className={styles.title}>{data.title}</p>
                         <p className={styles.artist}>{data.artist}</p>

@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
 
+import {remote} from 'electron';
+import ElectronStore from 'electron-store';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,13 +13,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Switch from '@material-ui/core/Switch';
 import Icon from '@material-ui/core/Icon';
 
 
 import Grow from '@material-ui/core/Grow';
 
 import styles from './configStyles.css';
+
+const userConfigs = new ElectronStore();
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Grow ref={ref} {...props} />;
@@ -27,30 +31,27 @@ export default class ConfigDialog extends PureComponent {
         super(props);
         
         this.state = {
-            checked: [],
+            downloadPath: userConfigs.get('downloadPath'),
         }
     }
     
-    handleToggle = (value) => () => {
-        const {checked} = this.state;
-        
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-    
-        if (currentIndex === -1) {
-          newChecked.push(value);
-        } else {
-          newChecked.splice(currentIndex, 1);
-        }
-    
-        this.setState({
-            checked: newChecked
+
+    selectDownloadPath = () => {
+        var path = remote.dialog.showOpenDialogSync({
+            buttonLabel: "Selecionar",
+            properties: ['openDirectory', 'promptToCreate', 'createDirectory']
         });
+
+        if(!path) return;
+
+        this.setState({
+            downloadPath: path[0] + '/Jukee/'
+        })
     }
 
 	render() {
         const {open, handleClose} = this.props;
-        const {checked} = this.state;
+        const {downloadPath} = this.state;
 
 	    return (
 	    	<Dialog
@@ -66,29 +67,12 @@ export default class ConfigDialog extends PureComponent {
                             <ListItemIcon>
                                 <Icon className="fas fa-download" />
                             </ListItemIcon>
-                            <ListItemText id="switch-list-label-wifi" primary="Pausar downloads ao iniciar música" />
+                            <ListItemText id="switch-list-label-wifi" 
+                                primary="Local dos Downloads"
+                                secondary={downloadPath}
+                            />
                             <ListItemSecondaryAction>
-                                <Switch
-                                    edge="end"
-                                    onChange={this.handleToggle('wifi')}
-                                    checked={checked.indexOf('wifi') !== -1}
-                                    inputProps={{ 'aria-labelledby': 'switch-list-label-wifi' }}
-                                />
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                        
-                        <ListItem>
-                            <ListItemIcon>
-                          
-                            </ListItemIcon>
-                            <ListItemText id="switch-list-label-bluetooth" primary="Bluetooth" />
-                            <ListItemSecondaryAction>
-                                <Switch
-                                    edge="end"
-                                    onChange={this.handleToggle('bluetooth')}
-                                    checked={checked.indexOf('bluetooth') !== -1}
-                                    inputProps={{ 'aria-labelledby': 'switch-list-label-bluetooth' }}
-                                />
+                                <Button onClick={this.selectDownloadPath} variant="outlined">Escolher Pasta</Button>
                             </ListItemSecondaryAction>
                         </ListItem>
                     </List>

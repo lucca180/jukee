@@ -34,7 +34,8 @@ class HomePage extends Component {
 	cataMusicas = () => {
 		try{
 			const app = remote.app;
-			var musicsPath = path.join(app.getPath('downloads'), 'karaoke');
+			const userConfigs = new ElectronStore();
+			var musicsPath = userConfigs.get('downloadPath');
 			var songs = {};
 
 			var files = fs.readdirSync(musicsPath, {withFileTypes: true});
@@ -42,7 +43,6 @@ class HomePage extends Component {
 			for(let file of files) {
 				if(!file.isDirectory()) continue;
 				try{
-				
 					let dir = path.join(musicsPath, file.name);
 					let json = fs.readFileSync(path.join(dir, 'info.json'), 'utf8');
 					let data = JSON.parse(json);		
@@ -57,8 +57,6 @@ class HomePage extends Component {
 					console.warn(e)
 				}
 			}
-			
-			console.log(songs)
 
 			this.props.setState({
 				songList: songs,
