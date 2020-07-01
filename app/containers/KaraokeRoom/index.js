@@ -1,7 +1,7 @@
 import React from 'react';
-import { remote } from 'electron';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ElectronStore from 'electron-store';
 import path from 'path';
 import fs from 'fs';
 
@@ -18,7 +18,6 @@ import * as GlobalState from '../../actions/globalState';
 
 import styles from './style.css';
 
-const app = remote.app;
 const noteStrings = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 const modulo = (n, m) => (((n % m) + m) % m);
 
@@ -482,10 +481,12 @@ class KaraokeRoom extends React.PureComponent  {
 
 	init = async () => {
 		try{
+			const userConfig = new ElectronStore();
+
 			const {selectedSong} = this.props.globalState;
 			if(!selectedSong) return this.props.history.push('/');
 			
-			const musicPath = path.join(app.getPath('downloads'), 'karaoke', selectedSong.name);
+			const musicPath = path.join(userConfig.get('downloadPath'), selectedSong.name);
 			var files = fs.readdirSync(musicPath);
 
 			var videoSrc = files.find(function (file) {return file.endsWith('.mp4')});

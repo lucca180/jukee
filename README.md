@@ -3,13 +3,21 @@ Jukee is an **Ultrastar-based karaoke player** made with **Electron** and **Reac
 
 *Yeah, Javascript. No more ancient languages :)*
 
+### Screenshots
+
+<img src="https://i.imgur.com/6v5MmVo.png" width="500px">
+
+<img src="https://i.imgur.com/qeU7C9V.png" width="500px">
+
+<img src="https://i.imgur.com/XoWx4jc.png" width="500px">
+
 ### Features
 
 - Uses popular Ultrastar .txt format
- - Download your favorite songs via Torrent
- - Pitch detection for marking your score
- - Modern UI
- - **Online Mode!** <sup>soon™</sup>
+- Download your favorite songs via Torrent
+- Pitch detection for marking your score
+- Modern UI
+- **Online Mode!** <sup>soon™</sup>
 
 
 ### Getting Started
